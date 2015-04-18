@@ -10,6 +10,8 @@ Drop the `Moments Recorder` folder in your project and add the `Recorder` script
 
 The included demo should get you started. For more advanced features, browse the `Moments.Recorder` source code, it's heavily commented.
 
+[Here's a preview](http://i.imgur.com/K4R8UZ0.gifv) of the output quality.
+
 Pull requests are welcomed !
 
 ## License
