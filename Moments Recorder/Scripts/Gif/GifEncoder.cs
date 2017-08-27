@@ -95,10 +95,12 @@ namespace Moments.Encoder
 		/// Builds a colour map out of the combined colours from several frames.
 		/// </summary>
 		/// <param name="frames">List of frames to sample colour palette from</param>
-		public void BuildPalette(ref List<GifFrame> frames) {
+		public void BuildPalette(ref List<GifFrame> frames)
+		{
 
 			// Do not build the color palette here if user wants separate palettes created per frame
-			if (m_FramesPerColorSample == 0) {
+			if (m_FramesPerColorSample == 0)
+			{
 				return;
 			}
 
@@ -108,11 +110,14 @@ namespace Moments.Encoder
 			int count = 0;
 
 			// Stich the large image together out of pixels from several frames
-			for (int i = 0; i < frames.Count; i += m_FramesPerColorSample) {
+			for (int i = 0; i < frames.Count; i += m_FramesPerColorSample)
+			{
 				Color32[] p = frames[i].Data;
 				// Texture data is layered down-top, so flip it
-				for (int th = frames[i].Height - 1; th >= 0; th--) {
-					for (int tw = 0; tw < frames[i].Width; tw++) {
+				for (int th = frames[i].Height - 1; th >= 0; th--)
+				{
+					for (int tw = 0; tw < frames[i].Width; tw++)
+					{
 						Color32 color = p[th * frames[i].Width + tw];
 						combinedPixels[count] = color.r; count++;
 						combinedPixels[count] = color.g; count++;
@@ -280,7 +285,8 @@ namespace Moments.Encoder
 			m_IndexedPixels = new byte[nPix];
 
 			// Analyze image colors and create color map (original, expensive, Moments Recorder behaviour)
-			if (m_FramesPerColorSample == 0) {
+			if (m_FramesPerColorSample == 0)
+			{
 				nq = new NeuQuant(m_Pixels, len, (int)m_SampleInterval);
 				m_ColorTab = nq.Process(); // Create reduced palette
 			}
