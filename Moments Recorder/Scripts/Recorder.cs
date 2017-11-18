@@ -293,15 +293,11 @@ namespace Moments
 		}
 		
 
-		void OnRenderImage(RenderTexture source, RenderTexture destination)
-		{
-			OnRenderImageNormal(source, destination);
-		}
 		
 		public System.Action<float> OnUpdateTime;
 		
 		float m_LastTime;
-		void OnRenderImageNormal(RenderTexture source, RenderTexture destination)
+		void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (State != RecorderState.Recording)
 			{
