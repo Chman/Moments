@@ -168,7 +168,7 @@ namespace Moments
 			m_AutoAspect = autoAspect;
 			m_ReflectionUtils.ConstrainMin(x => x.m_Width, width);
 
-			if (autoAspect)
+			if (!autoAspect)
 				m_ReflectionUtils.ConstrainMin(x => x.m_Height, height);
 
 			m_ReflectionUtils.ConstrainRange(x => x.m_FramePerSecond, fps);
