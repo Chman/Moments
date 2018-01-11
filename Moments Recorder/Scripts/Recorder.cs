@@ -69,6 +69,9 @@ namespace Moments
 		[SerializeField, Min(0.1f)]
 		float m_BufferSize = 3f;
 
+		[SerializeField, Range(0, 60)]
+		int m_FramesPerColorSample = 6;
+
 		#endregion
 
 		#region Public fields
