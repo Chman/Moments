@@ -156,6 +156,9 @@ namespace Moments
 		/// 256 colors allowed by the GIF specification). Lower values (minimum = 1) produce better
 		/// colors, but slow processing significantly. Higher values will speed up the quantization
 		/// pass at the cost of lower image quality (maximum = 100).</param>
+		/// <param name="framesPerColorSample">Sample every n-th frame in a recording for color
+		/// mapping purposes. If framesPerColorSample is set to 0, Moments uses its default behaviour
+		/// and creates a brand new color palette every frame.</param>
 		public void Setup(bool autoAspect, int width, int height, int fps, float bufferSize, int repeat, int quality, int framesPerColorSample)
 		{
 			if (State == RecorderState.PreProcessing)
