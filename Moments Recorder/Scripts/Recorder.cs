@@ -429,7 +429,6 @@ namespace Moments
 		{
 			RenderTexture.active = source;
 			target.ReadPixels(new Rect(0, 0, source.width, source.height), 0, 0);
-			target.Apply();
 			RenderTexture.active = null;
 
 			return new GifFrame() { Width = target.width, Height = target.height, Data = target.GetPixels32() };
