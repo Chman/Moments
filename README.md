@@ -1,10 +1,10 @@
 # Moments 2: Electric Boogaloo
-This is my personal fork of Chman's Moments, all I did was fix the script that was causing problems.
-As per request of the licence, what I changed was MinDrawer.cs, 
-I removed it because new Unity versions already come with this as part of the engine.
-
-This is a modified version of the original,
-the original licence & most licence notices have been left intact, though one was removed in the process of modification.
+This is my personal fork of Chman's Moments, all I did was fix the script that was causing problems.  
+As per request of the licence, what I changed was MinDrawer.cs,   
+I removed it because new Unity versions already come with this as part of the engine.  
+  
+This is a modified version of the original,  
+the original licence & most licence notices have been left intact, though one was removed in the process of modification.  
 
 
 
