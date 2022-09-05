@@ -449,6 +449,9 @@ namespace Moments
 		{
 			RenderTexture.active = source;
 			target.ReadPixels(new Rect(0, 0, source.width, source.height), 0, 0);
+			
+			// Renders come through upside down for some reason...
+			target = Utils.FlipTextureVertically(target);
 			target.Apply();
 			RenderTexture.active = null;
 
