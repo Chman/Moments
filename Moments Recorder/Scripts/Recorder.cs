@@ -23,8 +23,10 @@
 
 using UnityEngine;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 using Moments.Encoder;
 using ThreadPriority = System.Threading.ThreadPriority;
 
@@ -227,8 +229,9 @@ namespace Moments
 			if (m_Frames == null)
 				return;
 
-			foreach (RenderTexture rt in m_Frames)
+			foreach (RenderTexture rt in m_Frames){
 				Flush(rt);
+			}
 
 			m_Frames.Clear();
 		}
@@ -279,6 +282,7 @@ namespace Moments
 
 		void Awake()
 		{
+			RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
 			m_ReflectionUtils = new ReflectionUtils<Recorder>(this);
 			m_Frames = new Queue<RenderTexture>();
 			Init();
@@ -287,6 +291,17 @@ namespace Moments
 		void OnDestroy()
 		{
 			FlushMemory();
+		}
+
+		void OnEndCameraRendering(ScriptableRenderContext context, Camera cam)
+		{
+			if (cam != Camera.main)
+				return;
+
+			if (State == RecorderState.Recording)
+			{
+				OnRenderImage(cam.activeTexture, cam.targetTexture);
+			}
 		}
 
 		void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -320,6 +335,7 @@ namespace Moments
 				}
 
 				Graphics.Blit(source, rt);
+
 				m_Frames.Enqueue(rt);
 			}
 
@@ -381,7 +397,7 @@ namespace Moments
 		// Pre-processing coroutine to extract frame data and send everything to a separate worker thread
 		IEnumerator PreProcess(string filename)
 		{
-			string filepath = SaveFolder + "/" + filename + ".gif";
+			string filepath = SaveFolder + Path.DirectorySeparatorChar + filename + ".gif";
 			List<GifFrame> frames = new List<GifFrame>(m_Frames.Count);
 
 			// Get a temporary texture to read RenderTexture data
@@ -412,6 +428,7 @@ namespace Moments
 			// Setup a worker thread and let it do its magic
 			GifEncoder encoder = new GifEncoder(m_Repeat, m_Quality);
 			encoder.SetDelay(Mathf.RoundToInt(m_TimePerFrame * 1000f));
+
 			Worker worker = new Worker(WorkerPriority)
 			{
 				m_Encoder = encoder,
