@@ -193,6 +193,8 @@ namespace Moments
 				return;
 			}
 
+			RenderPipelineManager.endCameraRendering -= OnEndCameraRendering;
+
 			State = RecorderState.Paused;
 		}
 
@@ -206,6 +208,8 @@ namespace Moments
 				Debug.LogWarning("Attempting to resume recording during the pre-processing step.");
 				return;
 			}
+
+			RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
 
 			State = RecorderState.Recording;
 		}
@@ -282,7 +286,6 @@ namespace Moments
 
 		void Awake()
 		{
-			RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
 			m_ReflectionUtils = new ReflectionUtils<Recorder>(this);
 			m_Frames = new Queue<RenderTexture>();
 			Init();
