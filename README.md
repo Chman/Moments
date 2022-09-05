@@ -1,6 +1,7 @@
 # Unity-Moments
 
 Updated version of the following repository by [Chman](https://github.com/Chman/Moments)
+
 **Moments** is a quick GIF replay recorder for Unity. It automatically records the last few seconds of gameplay and lets you save to a GIF file on demand.
 
 Tested with Unity 2022.1. The demo requires use of the Universal or High Definition Render Pipelines.
