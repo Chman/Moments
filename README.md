@@ -1,8 +1,10 @@
-# Moments
+# Unity-Moments
 
-**Moments** is a quick GIF replay recorder for Unity3D. It automatically records the last few seconds of gameplay and lets you save to a GIF file on demand, like the game [TowerFall Ascension](http://www.towerfall-game.com/) does.
+Updated version of the following repository by [Chman](https://github.com/Chman/Moments)
 
-Tested with Unity 4.6. The demo requires Unity 5+ (Personal or Pro).
+**Moments** is a quick GIF replay recorder for Unity. It automatically records the last few seconds of gameplay and lets you save to a GIF file on demand.
+
+Tested with Unity 2022.1. The demo requires use of the Universal or High Definition Render Pipelines.
 
 ## Instructions
 
