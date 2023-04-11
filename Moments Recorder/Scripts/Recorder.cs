@@ -81,7 +81,7 @@ namespace Moments
 		/// <summary>
 		/// The folder to save the gif to. No trailing slash.
 		/// </summary>
-		public string SaveFolder { get; set; }
+		private System.IO.DirectoryInfo Directory;
 
 		/// <summary>
 		/// Sets the worker threads priority. This will only affect newly created threads (on save).
@@ -340,14 +340,9 @@ namespace Moments
 			m_Time = 0f;
 
 			// Make sure the output folder is set or use the default one
-			if (string.IsNullOrEmpty(SaveFolder))
-			{
-				#if UNITY_EDITOR
-				SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
-				#else
-				SaveFolder = Application.persistentDataPath;
-				#endif
-			}
+			Directory = new System.IO.DirectoryInfo(System.IO.Path.Combine(Application.dataPath, "../GIFs", System.DateTime.Now.ToString("MM-dd")));
+			if (!Directory.Exists)
+				Directory.Create();
 		}
 
 		// Automatically computes height from the current aspect ratio if auto aspect is set to true
@@ -381,7 +376,7 @@ namespace Moments
 		// Pre-processing coroutine to extract frame data and send everything to a separate worker thread
 		IEnumerator PreProcess(string filename)
 		{
-			string filepath = SaveFolder + "/" + filename + ".gif";
+			string filepath = Directory + "/" + filename + ".gif";
 			List<GifFrame> frames = new List<GifFrame>(m_Frames.Count);
 
 			// Get a temporary texture to read RenderTexture data

@@ -27,12 +27,12 @@ using Moments;
 
 namespace MomentsEditor
 {
-	[CustomPropertyDrawer(typeof(MinAttribute))]
+	[CustomPropertyDrawer(typeof(Moments.MinAttribute))]
 	internal sealed class MinDrawer : PropertyDrawer
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
-			MinAttribute attribute = (MinAttribute)base.attribute;
+			Moments.MinAttribute attribute = (Moments.MinAttribute)base.attribute;
 
 			if (property.propertyType == SerializedPropertyType.Integer)
 			{
